@@ -1,0 +1,9 @@
+{% extends "./_layout.html" %} {% block content %}
+<h1 class="banner-title">Our amazing products</h1>
+<section class="product-list">
+	{% for product in products %} {% include "./partials/_product_card.html" %}
+	{%endfor %} {% if products|length == 0%}
+	<p class="product-list--empty">No product found</p>
+	{% endif %}
+</section>
+{% endblock %}

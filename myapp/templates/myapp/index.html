@@ -1,0 +1,14 @@
+{% extends "./_layout.html" %}
+{% block content %}
+		<h1>Questions list</h1>
+		<ul>
+			{% for question in questions %}
+			<li>
+				<a href="/myapp/edit/{{ question.id }}"> {{ question.text }} </a>
+				<a href="/myapp/delete/{{question.id}}">Delete</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>
+{% endblock %}

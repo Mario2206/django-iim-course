@@ -1,0 +1,17 @@
+{% extends "./_layout.html" %}
+{% block content %}
+{% if question %}
+		<h1>Question id : {{ question.id }}</h1>
+		{% else %}
+		<h1>Create question</h1>
+		{% endif %}
+		<form
+			action="/myapp/{%if question is null  %}create {% else %}edit/{{question.id}}{% endif %}"
+			method="post"
+		>
+			{% csrf_token %} {{ form }}
+			<input type="submit" value="Submit" />
+		</form>
+	</body>
+</html>
+{% endblock %}

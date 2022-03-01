@@ -1,0 +1,15 @@
+<a href="/shop/{{ product.id }}">
+	<article class="product-card">
+		<div class="product-cart--banner">
+			<img src="{{MEDIA_URL}}{{ product.image }}" />
+		</div>
+		<h3 class="product-card--title">{{ product.title }}</h3>
+		<p class="product-card--content">
+			{{ product.description|slice:100 }}
+			<span class="product-card--see-more">[...]</span>
+		</p>
+		<footer class="product-card--footer">
+			<p class="product-card--price">{{ product.price }}$</p>
+		</footer>
+	</article>
+</a>

@@ -1,0 +1,23 @@
+{% extends "./_layout.html" %} {% block content %}
+<section>
+	<h1 class="banner-title">{{ product.title }}</h1>
+	<div class="product--content">
+		<img src="{{MEDIA_URL}}{{ product.image }}" />
+		<p class="product--description">{{ product.description }}</p>
+		<footer>
+			<p class="product--important">
+				Only {{ product.quantity }} left in stock
+			</p>
+			<form
+				class="product--form"
+				method="POST"
+				action="/shop/buy/{{ product.id }}"
+			>
+				{% csrf_token %} {{ form }}
+
+				<button class="cta-buy" type="submit">Buy</button>
+			</form>
+		</footer>
+	</div>
+</section>
+{% endblock %}
