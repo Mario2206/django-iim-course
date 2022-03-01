@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from shop.forms import BuyProductForm
 
@@ -17,12 +17,10 @@ def index(request):
     return render(request, 'shop/index.html', {'products': products})
 
 def get(request, id):
-    try:
-        product = Product.objects.get(id=id, quantity__gt=0)
-        form = BuyProductForm()
-    except Product.DoesNotExist: 
-        return HttpResponseRedirect("/shop")
-
+   
+    product = get_object_or_404(Product, id=id, quantity__gt=0)
+    form = BuyProductForm()
+    
     return render(request, "shop/product.html", { 'product' : product, 'form': form })
 
 def buy(request, id):
@@ -30,23 +28,21 @@ def buy(request, id):
     if request.method != 'POST':
         return HttpResponseBadRequest("The Http method must be POST")
 
-    try:
-        product = Product.objects.get(id=id, quantity__gt=0)
-        form = BuyProductForm(request.POST)
+    
+    product = get_object_or_404(Product, id=id, quantity__gt=0)
+    form = BuyProductForm(request.POST)
 
-        if form.is_valid():
+    if form.is_valid():
 
-            if product.quantity < form.cleaned_data["quantity"] :
-                return HttpResponseRedirect("/shop/{}?error=too-much-quantity".format(product.id))
+        if product.quantity < form.cleaned_data["quantity"] :
+            return HttpResponseRedirect("/shop/{}?error=too-much-quantity".format(product.id))
 
-            product.removeQuantity(form.cleaned_data["quantity"])
-            product.save()
-            return HttpResponseRedirect("/shop")
-        
-        return HttpResponseRedirect("/shop/{}".format(product.id))
-
-    except Product.DoesNotExist: 
+        product.removeQuantity(form.cleaned_data["quantity"])
+        product.save()
         return HttpResponseRedirect("/shop")
+    
+    return HttpResponseRedirect("/shop/{}".format(product.id))
+
         
 def messenger(request):
     return render(request, "shop/messenger.html")
