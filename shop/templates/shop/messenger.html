@@ -1,0 +1,16 @@
+{% extends "./_layout.html" %} 
+{% block head %} 
+{% endblock %} 
+{% block content %} 
+    <section class="message-container">
+        <div class="message-list"></div>
+        <form class="message-form">
+            <input class="message-form--input" name="message" placeholder="Your message here" />
+            <button class="message-form--button">Send</button>
+        </form>
+    </section>
+{% endblock %}
+{% block end %}
+    {% load static %}
+	<script src="{% static 'shop/script/messenger.js' %}" ></script>
+{% endblock %}

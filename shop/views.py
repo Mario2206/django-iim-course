@@ -48,3 +48,5 @@ def buy(request, id):
     except Product.DoesNotExist: 
         return HttpResponseRedirect("/shop")
         
+def messenger(request):
+    return render(request, "shop/messenger.html")

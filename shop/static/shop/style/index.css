@@ -177,3 +177,58 @@ body {
 	border-radius: 10px;
 	cursor: pointer;
 }
+
+
+.message-container {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+.message-list {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 20px 5vw;
+}
+
+.message-form {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.message-form input {
+	padding: 10px;
+}
+
+.message-form button {
+	padding: 8px;
+}
+
+.message {
+	background-color: #63b4ff;
+	color: white;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.global-messenger-btn {
+	position: fixed;
+	bottom: 3vh;
+	right: 3vw;
+	z-index: 1000;
+}
+
+.global-messenger-btn {
+	background-color: #63b4ff;
+	width: 60px;
+	height: 60px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+}
+.global-messenger-btn path {
+	fill: white;
+}

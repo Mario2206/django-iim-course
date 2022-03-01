@@ -7,10 +7,13 @@
 		<title>Mon super site marchand</title>
 		{% load static %}
 		<link rel="stylesheet" href="{% static 'shop/style/index.css' %}" />
+		{% block head %}{% endblock %}
 	</head>
 	<body>
+		{% include './partials/_messenger_btn.html' %}
 		{% include './partials/_header.html' %}
 		<main class="app-container">{% block content%}{% endblock %}</main>
 		{% include './partials/_footer.html' %}
+		{% block end%}{% endblock %}
 	</body>
 </html>

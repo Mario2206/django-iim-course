@@ -5,5 +5,6 @@ app_name = 'shop'
 urlpatterns = [
     path('', views.index, name='index'),
     path('<int:id>', views.get, name='get'),
-    path('buy/<int:id>', views.buy, name='buy')
+    path('buy/<int:id>', views.buy, name='buy'),
+    path('messenger', views.messenger, name='messenger')
 ]
